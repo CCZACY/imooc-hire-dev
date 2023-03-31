@@ -35,8 +35,8 @@ public class StuController {
     @GetMapping("test002")
     public String stu002() {
         Stu stu = new Stu();
-        stu.setName("测试2");
-        stu.setAge(19);
+        stu.setName("测试3");
+        stu.setAge(20);
         service.save(stu);
         return "ok!";
     }
