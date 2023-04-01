@@ -4,6 +4,8 @@ server:
     uri-encoding: utf-8
     max-swallow-size: -1
 spring:
+  application:
+    name: company-service
   profiles:
     active: dev
 # 配置日志级别
