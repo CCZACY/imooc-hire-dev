@@ -6,9 +6,9 @@ server:
     max-swallow-size: -1
 spring:
   application:
-    name: user-service
-  profiles:
-    active: dev
+    name: company-service
+#  profiles:
+#    active: dev
 # 配置日志级别
 logging:
   level:
