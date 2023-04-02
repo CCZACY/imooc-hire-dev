@@ -1,5 +1,6 @@
 server:
-  port: 7001
+#  port: 7001
+  port: ${port:7001} // 此种写法 可以复制该服务 通过配置VM OPTIONS "-DPORT=其他端口号"来启动多个实例
   tomcat:
     uri-encoding: utf-8
     max-swallow-size: -1
