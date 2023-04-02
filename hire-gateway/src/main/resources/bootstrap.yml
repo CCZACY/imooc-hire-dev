@@ -1,14 +1,14 @@
 server:
   #  port: 6001
-  port: ${port:6001}
+  port: 8000
   tomcat:
     uri-encoding: utf-8
     max-swallow-size: -1
-  servlet:
-    context-path: /api/companyService
 spring:
   application:
-    name: company-service
+    name: hire-gateway
+#  main:
+#    web-application-type: reactive
   cloud:
     nacos:
       config:
@@ -20,9 +20,3 @@ spring:
 logging:
   level:
     root: info
-# mybatis-plus
-mybatis-plus:
-  mapper-locations: classpath*:/mapper/*.xml
-  global-config:
-    db-config:
-      id-type: assign_id

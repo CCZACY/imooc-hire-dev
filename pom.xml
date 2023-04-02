@@ -15,6 +15,7 @@
         <module>hire-api</module>
         <module>service-user</module>
         <module>service-company</module>
+        <module>hire-gateway</module>
     </modules>
 
     <parent>

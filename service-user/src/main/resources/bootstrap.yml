@@ -4,6 +4,8 @@ server:
   tomcat:
     uri-encoding: utf-8
     max-swallow-size: -1
+  servlet:
+    context-path: /api/userService
 spring:
   application:
     name: user-service

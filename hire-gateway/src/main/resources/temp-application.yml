@@ -1,21 +1,14 @@
 server:
-  #  port: 6001
-  port: ${port:6001}
+#  port: 6001
+  port: ${port:6001} // 此种写法 可以复制该服务 通过配置VM OPTIONS "-DPORT=其他端口号"来启动多个实例
   tomcat:
     uri-encoding: utf-8
     max-swallow-size: -1
-  servlet:
-    context-path: /api/companyService
 spring:
   application:
     name: company-service
-  cloud:
-    nacos:
-      config:
-        server-addr: 192.168.0.101:8848
-        file-extension: yaml
-        namespace: fee5f0ca-37a0-4e1b-86f8-3e3069fdde80
-        group: dev
+#  profiles:
+#    active: dev
 # 配置日志级别
 logging:
   level:

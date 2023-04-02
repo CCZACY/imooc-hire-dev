@@ -1,0 +1,6 @@
+# 配置mysql单点数据库信息
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.101:8848
