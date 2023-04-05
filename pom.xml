@@ -16,6 +16,7 @@
         <module>service-user</module>
         <module>service-company</module>
         <module>hire-gateway</module>
+        <module>service-auth</module>
     </modules>
 
     <parent>

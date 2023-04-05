@@ -1,0 +1,28 @@
+server:
+  #  port: 6001
+  port: ${port:8111}
+  tomcat:
+    uri-encoding: utf-8
+    max-swallow-size: -1
+  servlet:
+    context-path: /api/authService
+spring:
+  application:
+    name: auth-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.0.101:8848
+        file-extension: yaml
+        namespace: fee5f0ca-37a0-4e1b-86f8-3e3069fdde80
+        group: dev
+# 配置日志级别
+logging:
+  level:
+    root: info
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/*.xml
+  global-config:
+    db-config:
+      id-type: assign_id
