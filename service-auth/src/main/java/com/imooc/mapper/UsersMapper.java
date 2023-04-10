@@ -2,6 +2,7 @@ package com.imooc.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.imooc.pojo.Users;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.imooc.pojo.Users;
  * @author 风间影月
  * @since 2023-03-31
  */
+@Repository
 public interface UsersMapper extends BaseMapper<Users> {
 
 }

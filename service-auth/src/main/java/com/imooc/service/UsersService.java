@@ -13,4 +13,18 @@ import com.imooc.pojo.Users;
  */
 public interface UsersService extends IService<Users> {
 
+    /**
+     * 判断用户是否已经存在
+     * @param nobile
+     * @return
+     */
+    public Users queryMobilesIsExist(String nobile);
+
+    /**
+     * 创建新用户
+     * @param mobile
+     * @return
+     */
+    public Users createUsers(String mobile);
+
 }
