@@ -1,6 +1,7 @@
 package com.imooc.controller;
 
 
+import com.google.gson.Gson;
 import com.imooc.base.BaseInfoProperties;
 import com.imooc.grace.result.GraceJSONResult;
 import com.imooc.grace.result.ResponseStatusEnum;
@@ -9,6 +10,7 @@ import com.imooc.pojo.bo.RegistLoginBo;
 import com.imooc.pojo.vo.UsersVO;
 import com.imooc.service.UsersService;
 import com.imooc.utils.IPUtil;
+import com.imooc.utils.JWTUtils;
 import com.imooc.utils.SMSUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -38,6 +40,9 @@ public class PassPortController extends BaseInfoProperties {
 
     @Autowired
     private UsersService usersService;
+
+    @Autowired
+    private JWTUtils jwtUtils;
 
     @PostMapping("getSMSCode")
     public GraceJSONResult getSNSCode(String mobile, HttpServletRequest request) throws Exception {
@@ -83,8 +88,12 @@ public class PassPortController extends BaseInfoProperties {
 //        users = usersService.createUsers(mobile);
 
         // 3.保存用户token，分布式会话到redis中
-        String uToken = TOKEN_USER_PREFIX + SYMBOL_DOT + UUID.randomUUID().toString();
-        redis.set(REDIS_ADMIN_TOKEN + ":" + users.getId(), uToken);
+//        String uToken = TOKEN_USER_PREFIX + SYMBOL_DOT + UUID.randomUUID().toString();
+//        redis.set(REDIS_ADMIN_TOKEN + ":" + users.getId(), uToken);
+
+        // 3.
+        String jwt = jwtUtils.createJWTWithPrefix(
+                new Gson().toJson(users), 1000L, TOKEN_USER_PREFIX);
 
         // 4.用户登陆注册以后，删除redis中的短信验证码
         redis.del(MOBILE_SMSCODE + ":" + mobile);
@@ -92,7 +101,7 @@ public class PassPortController extends BaseInfoProperties {
         // 5.返回用户的信息给前端
         UsersVO usersVO = new UsersVO();
         BeanUtils.copyProperties(users, usersVO);
-        usersVO.setUserToken(uToken);
+        usersVO.setUserToken(jwt);
 
         return GraceJSONResult.ok(usersVO);
     }
