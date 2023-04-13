@@ -2,6 +2,9 @@ package com.imooc.utils;
 
 import com.imooc.exceptions.GraceException;
 import com.imooc.grace.result.ResponseStatusEnum;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
@@ -92,5 +95,24 @@ public class JWTUtils {
                 .setExpiration(expireDate) // 定义JWTToken过期时间
                 .compact(); // 压缩并且生成JWT
         return myJWT;
+    }
+
+    public String checkJWT(String pendingJWT) {
+
+        // 1.对密钥进行BASE64加密编码
+        String base64 = new BASE64Encoder().encode(jwtProperties.getKey().getBytes());
+
+        // 2.对base64生成一个密钥对象
+        SecretKey secretKey = Keys.hmacShaKeyFor(base64.getBytes());
+
+        // 校验JWT
+        JwtParser jwtParser = Jwts.parserBuilder()
+                .setSigningKey(secretKey)
+                .build(); // 构造解析器
+        // 获得Claims
+        Jws<Claims> jws = jwtParser.parseClaimsJws(pendingJWT);
+
+        return jws.getBody().getSubject();
+
     }
 }
