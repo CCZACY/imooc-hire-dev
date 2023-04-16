@@ -95,7 +95,7 @@ public class PassPortController extends BaseInfoProperties {
         // 3.生成JWT登录令牌
         log.info("user1:" + new Gson().toJson(users));
         String jwt = jwtUtils.createJWTWithPrefix(
-                new Gson().toJson(users), 30000L, TOKEN_USER_PREFIX);
+                new Gson().toJson(users), 300000L, TOKEN_USER_PREFIX);
 
         // 4.用户登陆注册以后，删除redis中的短信验证码
         redis.del(MOBILE_SMSCODE + ":" + mobile);

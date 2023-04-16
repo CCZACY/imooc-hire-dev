@@ -1,5 +1,6 @@
 package com.imooc.api;
 
+import com.imooc.api.intercept.JWTCurrentUserInterceptor;
 import com.imooc.api.intercept.SMSInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,11 @@ public class InterceptorConfig implements WebMvcConfigurer {
         return new SMSInterceptor();
     }
 
+    @Bean
+    public JWTCurrentUserInterceptor jwtCurrentUserInterceptor() {
+        return new JWTCurrentUserInterceptor();
+    }
+
 //    @Bean
 //    public JWTCurrentUserInterceptor jwtCurrentUserInterceptor() {
 //        return new JWTCurrentUserInterceptor();
@@ -33,7 +39,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         registry.addInterceptor(smsInterceptor())
                 .addPathPatterns("/passport/getSMSCode");
 
-//        registry.addInterceptor(jwtCurrentUserInterceptor())
-//                .addPathPatterns("/**");
+        registry.addInterceptor(jwtCurrentUserInterceptor())
+                .addPathPatterns("/**");
     }
 }

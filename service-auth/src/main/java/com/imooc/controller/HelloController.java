@@ -1,7 +1,9 @@
 package com.imooc.controller;
 
 import com.google.gson.Gson;
+import com.imooc.api.intercept.JWTCurrentUserInterceptor;
 import com.imooc.base.BaseInfoProperties;
+import com.imooc.pojo.Admin;
 import com.imooc.pojo.Users;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +28,12 @@ public class HelloController extends BaseInfoProperties {
         Users users = new Gson().fromJson(decodeUserInfo, Users.class);
         log.info("description:" + users.getDescription());
         log.info("JWTUserInfo:" + users.toString());
+
+        Users users1 = JWTCurrentUserInterceptor.currentUser.get();
+//        Admin admin = JWTCurrentUserInterceptor.adminUser.get();
+        log.info("users1:" + users1.toString());
+//        log.info("admin:" + admin.toString());
+
         return "Hello AuthService~~~";
     }
 }
