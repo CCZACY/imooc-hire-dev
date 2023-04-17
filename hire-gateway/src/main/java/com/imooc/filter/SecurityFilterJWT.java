@@ -9,6 +9,8 @@ import io.jsonwebtoken.ExpiredJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -53,6 +55,8 @@ public class SecurityFilterJWT extends BaseInfoProperties implements GlobalFilte
 
         // 首先从资源文件中获取可以直接被放行的接口路径
         List<String> urls = excludeUrlProperties.getUrls();
+        log.info("urls:" + urls);
+//        List<String> urls = this.urls;
         // 获取进入过滤器的当前请求的接口路径
         String url = exchange.getRequest().getURI().getPath();
         log.info("url:" + url);

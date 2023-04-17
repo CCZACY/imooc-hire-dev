@@ -16,6 +16,11 @@ spring:
         file-extension: yaml
         namespace: fee5f0ca-37a0-4e1b-86f8-3e3069fdde80
         group: dev
+        # 本配置可以追加多个nacos的配置文件，如此可以加载多个dataid进行配置文件的共享
+        extension-configs:
+          - data-id: jwt-config.yaml
+            group: dev
+            refresh: true # 动态刷新配置
 # 配置日志级别
 logging:
   level:

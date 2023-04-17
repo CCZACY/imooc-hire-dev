@@ -50,6 +50,7 @@ public class JWTUtils {
 
         // 1.对密钥进行BASE64加密编码
         String base64 = new BASE64Encoder().encode(jwtProperties.getKey().getBytes());
+        log.info("JWT_KEY0:" + jwtProperties.getKey());
 
         // 2.对base64生成一个密钥对象
         SecretKey secretKey = Keys.hmacShaKeyFor(base64.getBytes());
@@ -101,6 +102,7 @@ public class JWTUtils {
 
         // 1.对密钥进行BASE64加密编码
         String base64 = new BASE64Encoder().encode(jwtProperties.getKey().getBytes());
+        log.info("JWT_KEY1:" + jwtProperties.getKey());
 
         // 2.对base64生成一个密钥对象
         SecretKey secretKey = Keys.hmacShaKeyFor(base64.getBytes());

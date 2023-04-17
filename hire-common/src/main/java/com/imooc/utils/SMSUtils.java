@@ -7,13 +7,22 @@ import com.tencentcloudapi.common.profile.HttpProfile;
 import com.tencentcloudapi.sms.v20210111.SmsClient;
 import com.tencentcloudapi.sms.v20210111.models.SendSmsRequest;
 import com.tencentcloudapi.sms.v20210111.models.SendSmsResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class SMSUtils {
     @Autowired
     private TencentCloudProperties tencentCloudProperties;
+
+//    @Value("${tencent.sms.secretId}")
+//    public String SECRETID;
+//
+//    @Value("${tencent.sms.secretKey}")
+//    public String SECRETKEY;
 
     public void sendSMS(String phone, String code) throws Exception {
         try {
@@ -23,6 +32,10 @@ public class SMSUtils {
              * 你也可以直接在代码中写死密钥对，但是小心不要将代码复制、上传或者分享给他人，
              * 以免泄露密钥对危及你的财产安全。
              * CAM密匙查询获取: https://console.cloud.tencent.com/cam/capi*/
+
+            log.info("secretId:" + tencentCloudProperties.getSecretId());
+            log.info("secretKey:" + tencentCloudProperties.getSecretKey());
+
             Credential cred = new Credential(tencentCloudProperties.getSecretId(),
                     tencentCloudProperties.getSecretKey());
 
