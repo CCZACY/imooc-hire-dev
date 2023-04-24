@@ -162,7 +162,7 @@ public class SaasPassportController extends BaseInfoProperties {
      * @return
      */
     @GetMapping("info")
-    public GraceJSONResult info(@RequestParam String token)  {
+    public GraceJSONResult info(@RequestParam String token) {
 
         String userJson = redis.get(REDIS_SAAS_USER_INFO + ":" + token);
         Users saasUser = new Gson().fromJson(userJson, Users.class);
@@ -179,7 +179,7 @@ public class SaasPassportController extends BaseInfoProperties {
      * @return
      */
     @PostMapping("logout")
-    public GraceJSONResult logout(@RequestParam String token)  {
+    public GraceJSONResult logout(@RequestParam String token) {
 
         return GraceJSONResult.ok();
     }
