@@ -112,7 +112,7 @@ public class SaasPassportController extends BaseInfoProperties {
     @PostMapping("goQRLogin")
     public GraceJSONResult goQRLogin(@RequestParam String userId,
                                      @RequestParam String qrToken,
-                                     @RequestParam String preToken)  {
+                                     @RequestParam String preToken) {
 
         String preTokenRedisArr = redis.get(SAAS_PLATFORM_LOGIN_TOKEN_READ + ":" + qrToken);
         if (StringUtils.isNotBlank(preTokenRedisArr)) {
@@ -138,7 +138,7 @@ public class SaasPassportController extends BaseInfoProperties {
      * @return
      */
     @PostMapping("checkLogin")
-    public GraceJSONResult checkLogin(@RequestParam String preToken)  {
+    public GraceJSONResult checkLogin(@RequestParam String preToken) {
 
         if (StringUtils.isBlank(preToken)) {
             return GraceJSONResult.ok("");
