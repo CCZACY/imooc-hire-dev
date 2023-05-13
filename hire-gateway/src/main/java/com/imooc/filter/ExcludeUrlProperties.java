@@ -17,4 +17,6 @@ public class ExcludeUrlProperties {
 
 //    @Value("${exclude.urls[]}")
     private List<String> urls;
+
+    private List<String> ipLimitUrls;
 }
