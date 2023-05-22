@@ -26,11 +26,13 @@ public class Admin implements Serializable {
 
     /**
      * 密码
+     * @JsonIgnore 使用该注解时 此类转换为Json时会忽略该字段
      */
     @JsonIgnore
     private String password;
 
     /**
+     * @JsonIgnore 使用该注解时 此类转换为Json时会忽略该字段
      * 用户混合加密的盐
      */
     @JsonIgnore
