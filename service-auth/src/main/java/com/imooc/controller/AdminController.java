@@ -2,19 +2,19 @@ package com.imooc.controller;
 
 
 import com.google.gson.Gson;
+import com.imooc.api.intercept.JWTCurrentUserInterceptor;
 import com.imooc.base.BaseInfoProperties;
 import com.imooc.grace.result.GraceJSONResult;
 import com.imooc.grace.result.ResponseStatusEnum;
 import com.imooc.pojo.Admin;
 import com.imooc.pojo.bo.AdminBO;
+import com.imooc.pojo.vo.AdminVO;
 import com.imooc.service.AdminService;
 import com.imooc.utils.JWTUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -50,6 +50,14 @@ public class AdminController extends BaseInfoProperties {
         String adminToken = jwtUtils.createJWTWithPrefix(new Gson().toJson(adminInfo), TOKEN_ADMIN_PREFIX);
 
         return GraceJSONResult.ok(adminToken);
+    }
+
+    @GetMapping("/info")
+    public GraceJSONResult info() {
+        Admin admin = JWTCurrentUserInterceptor.adminUser.get();
+        AdminVO adminVO = new AdminVO();
+        BeanUtils.copyProperties(admin, adminVO);
+        return GraceJSONResult.ok(adminVO);
     }
 
     @PostMapping("/logout")
