@@ -76,4 +76,16 @@ public class AdminServiceImpl extends BaseInfoProperties implements AdminService
 
         return setterPagedGrid(adminList, page);
     }
+
+    @Override
+    public void deleteAdmin(String username) {
+        // admin账户判断是否存在，若不存在，则提示该账户不存在
+        Integer res = adminMapper.delete(
+                new QueryWrapper<Admin>()
+                        .eq("username", username)
+                        .ne("username", "admin"));
+        if(res == 0) {
+            GraceException.display(ResponseStatusEnum.ADMIN_DELETE_ERROR);
+        }
+    }
 }

@@ -38,5 +38,12 @@ public class AdminInfoController extends BaseInfoProperties {
         return GraceJSONResult.ok(result);
     }
 
+    @PostMapping("delete")
+    public GraceJSONResult delete(@RequestParam("username") String username) {
+
+        adminService.deleteAdmin(username);
+        return GraceJSONResult.ok();
+    }
+
 
 }
