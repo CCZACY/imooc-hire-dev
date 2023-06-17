@@ -3,6 +3,7 @@ package com.imooc.controller;
 import com.imooc.base.BaseInfoProperties;
 import com.imooc.grace.result.GraceJSONResult;
 import com.imooc.pojo.bo.CreateAdminBO;
+import com.imooc.pojo.bo.ResetPwdBO;
 import com.imooc.service.AdminService;
 import com.imooc.utils.PagedGridResult;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,14 @@ public class AdminInfoController extends BaseInfoProperties {
     public GraceJSONResult delete(@RequestParam("username") String username) {
 
         adminService.deleteAdmin(username);
+        return GraceJSONResult.ok();
+
+    }
+
+    @PostMapping("resetPwd")
+    public GraceJSONResult resetPwd(@RequestBody ResetPwdBO resetPwdBO) {
+
+        resetPwdBO.modifyPwd();
         return GraceJSONResult.ok();
 
     }
