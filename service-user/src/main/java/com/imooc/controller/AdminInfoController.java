@@ -43,6 +43,7 @@ public class AdminInfoController extends BaseInfoProperties {
 
         adminService.deleteAdmin(username);
         return GraceJSONResult.ok();
+
     }
 
 
